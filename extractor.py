@@ -29,8 +29,17 @@ class Extractor(object):
 			   kp1 = kps[m.queryIdx].pt
 			   kp2 = self.last['kps'][m.trainIdx].pt
 			   ret.append((kp1,kp2))
-		# filter 
 
+		# filter 
+		if len(ret) > 0 :
+			ret = np.array(ret)
+			print(ret.shape)
+			model, inliers = ransac((ret[:,0],ret[:,1]),
+						 FundamentalMatrixTransform,
+       						 min_samples=8,
+						 residual_threshold=1,
+						max_trials=100)
+			ret = ret[inliers]
 
 		# return 
 		self.last = {'kps':kps,'des':des}
