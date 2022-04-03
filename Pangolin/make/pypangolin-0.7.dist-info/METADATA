@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pypangolin
+Version: 0.7
+Summary: Pangolin is a lightweight portable rapid development library for managing OpenGL display / interaction and abstracting video input.
+Home-page: https://github.com/stevenlovegrove/Pangolin
+Author: Steven Lovegrove
+Author-email: stevenlovegrove@gmail.com
+License: MIT
+Description-Content-Type: text/markdown
+Requires-Dist: pyopengl
+Requires-Dist: pyopengl-accelerate
+Requires-Dist: numpy
+Requires-Dist: pillow
+Requires-Dist: pybind11
+
+
