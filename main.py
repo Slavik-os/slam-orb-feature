@@ -21,11 +21,15 @@ def proccess_frame(img):
   # Escape empty points 
   if matches is None :
     return 
- 
+
+  def denormalize(pt):
+   return int(round(pt[0] + img.shape[0]//2)),int(round(pt[1] + img.shape[1]//2))
+
   # Brute-Force Matching 
   for pt1,pt2 in matches :
-   u1,v1 = map(lambda x: round(int(x)),pt1)
-   u2,v2 = map(lambda x: round(int(x)),pt2)
+   u1,v1 = denormalize(pt1)
+   u2,v2 = denormalize(pt2)
+
    cv2.circle(img,(u1,v1),color=(0,255,0),radius=3)
    cv2.line(img,(u1,v1),(u2,v2),color=(255,0,0))
 
@@ -40,13 +44,13 @@ def proccess_frame(img):
       exit(0)
 
 if __name__ == '__main__':
-  cap = cv2.VideoCapture("test_countryroad.mp4")
+  cap = cv2.VideoCapture(0)
 
   while cap.isOpened() :
     ret,frame = cap.read() 
 
     if ret == True :
       proccess_frame(frame)
-
+      #cv2.flip(frame,1)
 cap.release()
 cv2.destroyAllWindows()
